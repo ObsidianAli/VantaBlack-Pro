@@ -96,6 +96,22 @@ button:hover {
     100% {background-position: 0% 50%;}
 }
 
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+  
+.links a {
+    color: lightgrey;
+    text-decoration: none;
+    font-size: 0.85em;
+}
+  
+  .links a:hover {
+    color: #4B0082; /* Indigo */
+}
+
 
   /* Generate 100 stars (was translated from SCSS so that's why it looks like this.)*/
   .stars:nth-child(1) {
