@@ -22,29 +22,28 @@ const LoginForm = ({ mode }) => {
 };
 
 const AnimatedLoginForm = ({ mode, handleSignUpClick }) => {
-    const fade = useSpring({
-      from: { opacity: 0 },
-      to: { opacity: 1 },
-      config: { duration: 1000 },
-    });
-  
-    const { height } = useSpring({
-      from: { height: mode === 'login' ? 200 : 300 },
-      to: { height: mode === 'signup' ? 300 : 200 },
-      config: { duration: 1000 },
-    });
+  const fade = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { tension: 100, friction: 30},
+  });
 
-    return (
-      <animated.div style={{ ...fade, height }}>
-        <div className="card">
-          <LoginForm mode={mode} />
-          <div className="links">
-            <a href="/signup" onClick={handleSignUpClick}>Sign Up</a>
-            <a href="/forgot-password">Forgot Password?</a>
-          </div>
+  const props = useSpring({
+    height: mode === 'signup' ? '300px' : '200px',
+    config: { tension: 100, friction: 30},
+  });
+
+  return (
+    <animated.div style={{ ...fade, height: props.height.interpolate(height => `${height}`) }}>
+      <div className="card">
+        <LoginForm mode={mode} />
+        <div className="links">
+          <a href="/signup" onClick={handleSignUpClick}>Sign Up</a>
+          <a href="/forgot-password">Forgot Password?</a>
         </div>
-      </animated.div>
-  );
+      </div>
+    </animated.div>
+);
 };
 
 const AnimatedTitle = () => {
