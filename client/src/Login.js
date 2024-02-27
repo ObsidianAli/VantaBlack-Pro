@@ -110,8 +110,11 @@ const Login = () => {
 
     const buttonProps = useSpring({
       opacity: isRegistered ? 1 : 0,
-      height: isRegistered ? '100px' : '0px',
+      height: isRegistered ? '180px' : '0px',
       config: { tension: 100, friction: 30 },
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     });
   
     const stars = showStars && [...Array(100)].map((_, i) => {
