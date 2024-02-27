@@ -129,8 +129,12 @@ button:hover {
   height: 80px;
 }
 
+/* Hover effect för server och domän knapparna men vet inte om de passar, 
+känns som det skulle vara bättre utan dem för att de är mer "seriösa" knappar */
 .add-new-server-button:hover {
   background-color: rgba(0, 0, 0, 0.7);
+  transform: scale(1.01);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .add-new-server-button-content {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
-import logo from './logo.svg'; // replace this with your logo
+import logo from '../../assets/logo.svg'; // replace this with your logo
 
 const LogoAnimation = ({ onFinished }) => {
   const [toggle, setToggle] = useState(false);

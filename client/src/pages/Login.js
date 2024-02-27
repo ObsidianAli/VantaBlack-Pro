@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import './Login.css';
-import LogoAnimation from './LogoAnimation';
+import LogoAnimation from '../components/LogoAnimation/LogoAnimation';
 import { useTransition } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faServer, faSearch } from '@fortawesome/free-solid-svg-icons';
