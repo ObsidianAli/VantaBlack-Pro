@@ -50,7 +50,7 @@ const AnimatedLoginForm = ({ mode, handleSignUpClick, onRegister }) => {
   });
 
   return (
-    <animated.div style={{ ...fade, height: props.height.interpolate(height => `${height}`) }}>
+    <animated.div style={fade}>
       <div className="card">
         <LoginForm mode={mode} onRegister={onRegister} />
         <div className="links">
@@ -101,6 +101,18 @@ const Login = () => {
 
       setMode(mode === 'login' ? 'signup' : 'login');
     };
+
+    const formProps = useSpring({
+      opacity: isRegistered ? 0 : 1,
+      height: isRegistered ? '0px' : (mode === 'signup' ? '300px' : '200px'),
+      config: { tension: 100, friction: 30 },
+    });
+
+    const buttonProps = useSpring({
+      opacity: isRegistered ? 1 : 0,
+      height: isRegistered ? '100px' : '0px',
+      config: { tension: 100, friction: 30 },
+    });
   
     const stars = showStars && [...Array(100)].map((_, i) => {
       const size = Math.random() * .5;
@@ -125,30 +137,35 @@ const Login = () => {
         ) : (
           <>
             <AnimatedTitle />
-            {isRegistered ? (
-              <>
-                <button className='add-new-server-button' onClick={() => { console.log("Button clicked!") }}>
-                  <div className='add-new-server-button-content'>
-                    <FontAwesomeIcon icon={faServer} className="fa-icon" />
-                    <div>
-                      <div>Add a new server</div>
-                      <div className="add-new-server-button-description">Recommended for Admins</div>
+            <animated.div style={formProps}>
+              {!isRegistered && (
+                <AnimatedLoginForm mode={mode} handleSignUpClick={handleSignUpClick} onRegister={handleRegister} />
+              )}
+            </animated.div>
+            <animated.div style={buttonProps}>
+              {isRegistered && (
+                <>
+                  <button className='add-new-server-button' onClick={() => { console.log("Button clicked!") }}>
+                    <div className='add-new-server-button-content'>
+                      <FontAwesomeIcon icon={faServer} className="fa-icon" />
+                      <div>
+                        <div>Add a new server</div>
+                        <div className="add-new-server-button-description">Recommended for Admins</div>
+                      </div>
                     </div>
-                  </div>
-                </button>
-                <button className='add-new-server-button' onClick={() => { console.log("Button clicked!") }}>
-                  <div className='add-new-server-button-content'>
-                    <FontAwesomeIcon icon={faSearch} className="fa-icon" />
-                    <div>
-                      <div>Find a Server or Domain</div>
-                      <div className="add-new-server-button-description">Recommended for most users</div>
+                  </button>
+                  <button className='add-new-server-button' onClick={() => { console.log("Button clicked!") }}>
+                    <div className='add-new-server-button-content'>
+                      <FontAwesomeIcon icon={faSearch} className="fa-icon" />
+                      <div>
+                        <div>Find a Server or Domain</div>
+                        <div className="add-new-server-button-description">Recommended for most users</div>
+                      </div>
                     </div>
-                  </div>
-                </button>
-              </>
-            ) : (
-              <AnimatedLoginForm mode={mode} handleSignUpClick={handleSignUpClick} onRegister={handleRegister} />
-            )}
+                  </button>
+                </>
+              )}
+            </animated.div>
           </>
         )}
       </div>
