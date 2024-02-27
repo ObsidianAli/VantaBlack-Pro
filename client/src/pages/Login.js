@@ -5,6 +5,7 @@ import LogoAnimation from '../components/LogoAnimation/LogoAnimation';
 import { useTransition } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faServer, faSearch } from '@fortawesome/free-solid-svg-icons';
+import ServerForm from '../components/ServerForm/ServerForm.js';
 
 const LoginForm = ({ mode, onRegister }) => {
   const [username, setUsername] = useState('');
@@ -87,6 +88,12 @@ const Login = () => {
 
     const [isRegistered, setIsRegistered] = useState(false);
 
+    const [showServerForm, setShowServerForm] = useState(false);
+
+    const handleAddServer = () => {
+      setShowServerForm(true);
+    };
+
     const handleRegister = () => {
       setIsRegistered(true);
     }; 
@@ -148,7 +155,7 @@ const Login = () => {
             <animated.div style={buttonProps}>
               {isRegistered && (
                 <>
-                  <button className='add-new-server-button' onClick={() => { console.log("Button clicked!") }}>
+                  <button className='add-new-server-button' onClick={handleAddServer}>
                     <div className='add-new-server-button-content'>
                       <FontAwesomeIcon icon={faServer} className="fa-icon" />
                       <div>
@@ -157,6 +164,7 @@ const Login = () => {
                       </div>
                     </div>
                   </button>
+                  {showServerForm && <ServerForm />}
                   <button className='add-new-server-button' onClick={() => { console.log("Button clicked!") }}>
                     <div className='add-new-server-button-content'>
                       <FontAwesomeIcon icon={faSearch} className="fa-icon" />
