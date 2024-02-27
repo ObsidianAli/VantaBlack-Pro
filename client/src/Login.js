@@ -3,25 +3,41 @@ import { useSpring, animated } from 'react-spring';
 import './Login.css';
 import LogoAnimation from './LogoAnimation';
 import { useTransition } from 'react-spring';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faServer, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const LoginForm = ({ mode }) => {
+const LoginForm = ({ mode, onRegister }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(username, password, firstName, lastName, email);
+    if (mode === 'signup') {
+      onRegister();
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleLogin}>
       {mode === 'signup' && (
         <>
-          <input type="text" placeholder="First Name" />
-          <input type="text" placeholder="Last Name" />
-          <input type="email" placeholder="Email" />
+          <input type="text" placeholder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)} />
+          <input type="text" placeholder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)} />
+          <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
         </>
       )}
-      <input type="text" placeholder="Username" />
-      <input type="password" placeholder="Password" />
+      <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
+      <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
       <button type="submit">{mode === 'signup' ? 'Sign Up' : 'Log In'}</button>
     </form>
   );
 };
 
-const AnimatedLoginForm = ({ mode, handleSignUpClick }) => {
+const AnimatedLoginForm = ({ mode, handleSignUpClick, onRegister }) => {
   const fade = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -36,14 +52,20 @@ const AnimatedLoginForm = ({ mode, handleSignUpClick }) => {
   return (
     <animated.div style={{ ...fade, height: props.height.interpolate(height => `${height}`) }}>
       <div className="card">
-        <LoginForm mode={mode} />
+        <LoginForm mode={mode} onRegister={onRegister} />
         <div className="links">
-          <a href="/signup" onClick={handleSignUpClick}>Sign Up</a>
-          <a href="/forgot-password">Forgot Password?</a>
+          {mode === 'signup' ? (
+            <a href='/login' onClick={handleSignUpClick}>Already registered? Log in.</a>
+          ) : (
+            <>
+              <a href="/signup" onClick={handleSignUpClick}>Register</a>
+              <a href="/forgot-password">Forgot Password?</a>
+            </>
+          )}
         </div>
       </div>
     </animated.div>
-);
+  );
 };
 
 const AnimatedTitle = () => {
@@ -62,6 +84,12 @@ const Login = () => {
     const [showLogo, setShowLogo] = useState(true);
     const [showStars, setShowStars] = useState(false);
     const [mode, setMode] = useState('login');
+
+    const [isRegistered, setIsRegistered] = useState(false);
+
+    const handleRegister = () => {
+      setIsRegistered(true);
+    }; 
   
     const handleLogoAnimationFinished = () => {
       setShowLogo(false);
@@ -97,11 +125,33 @@ const Login = () => {
         ) : (
           <>
             <AnimatedTitle />
-            <AnimatedLoginForm mode={mode} handleSignUpClick={handleSignUpClick} />
+            {isRegistered ? (
+              <>
+                <button className='add-new-server-button' onClick={() => { console.log("Button clicked!") }}>
+                  <div className='add-new-server-button-content'>
+                    <FontAwesomeIcon icon={faServer} className="fa-icon" />
+                    <div>
+                      <div>Add a new server</div>
+                      <div className="add-new-server-button-description">Recommended for Admins</div>
+                    </div>
+                  </div>
+                </button>
+                <button className='add-new-server-button' onClick={() => { console.log("Button clicked!") }}>
+                  <div className='add-new-server-button-content'>
+                    <FontAwesomeIcon icon={faSearch} className="fa-icon" />
+                    <div>
+                      <div>Find a Server or Domain</div>
+                      <div className="add-new-server-button-description">Recommended for most users</div>
+                    </div>
+                  </div>
+                </button>
+              </>
+            ) : (
+              <AnimatedLoginForm mode={mode} handleSignUpClick={handleSignUpClick} onRegister={handleRegister} />
+            )}
           </>
         )}
       </div>
     );
   };
-
 export default Login;

@@ -112,6 +112,40 @@ button:hover {
     color: #4B0082; /* Indigo */
 }
 
+.add-new-server-button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid purple;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  width: 250px;
+  height: 80px;
+}
+
+.add-new-server-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.add-new-server-button-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-new-server-button-description {
+  font-size: 0.8em;
+  color: #aaa; /* Light gray */
+}
+
+.fa-icon {
+  margin-right: 10px;
+}
 
   /* Generate 100 stars (was translated from SCSS so that's why it looks like this.)*/
   .stars:nth-child(1) {
