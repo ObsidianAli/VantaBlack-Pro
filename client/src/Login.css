@@ -1,0 +1,582 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #1F1F1F; /* Dark gray */
+    border: 1.5px solid #4B0082; /* Indigo */
+    color: #D8D8D8; /* Light gray */
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4B0082; /* Indigo */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #800080; /* Purple */
+}
+
+@media (max-width: 1024px) {
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    form {
+        max-width: 500px;
+    }
+}
+
+.card {
+    width: 300px; /* adjust as needed */
+    padding: 20px;
+    margin: 0 auto;
+    background-color: black; /* Dark gray */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.stars {
+    background: #fff;
+    position: absolute;
+    animation: stars 4s infinite linear;
+  }
+  
+@keyframes stars {
+    from { transform: scale(0); }
+    to { transform: scale(1); opacity: 0; }
+}
+  
+  /* Generate 100 stars (was translated from SCSS so that's why it looks like this.)*/
+  .stars:nth-child(1) {
+    top: 37%;
+    left: 68%;
+    animation-delay: 1600ms;
+  }
+  .stars:nth-child(2) {
+    top: 38%;
+    left: 46%;
+    animation-delay: 948ms;
+  }
+  .stars:nth-child(3) {
+    top: 79%;
+    left: 87%;
+    animation-delay: 1993ms;
+  }
+  .stars:nth-child(4) {
+    top: 25%;
+    left: 54%;
+    animation-delay: 218ms;
+  }
+  .stars:nth-child(5) {
+    top: 16%;
+    left: 83%;
+    animation-delay: 952ms;
+  }
+  .stars:nth-child(6) {
+    top: 52%;
+    left: 94%;
+    animation-delay: 243ms;
+  }
+  .stars:nth-child(7) {
+    top: 37%;
+    left: 64%;
+    animation-delay: 729ms;
+  }
+  .stars:nth-child(8) {
+    top: 3%;
+    left: 3%;
+    animation-delay: 1567ms;
+  }
+  .stars:nth-child(9) {
+    top: 90%;
+    left: 66%;
+    animation-delay: 726ms;
+  }
+  .stars:nth-child(10) {
+    top: 75%;
+    left: 98%;
+    animation-delay: 1569ms;
+  }
+  .stars:nth-child(11) {
+    top: 8%;
+    left: 68%;
+    animation-delay: 1892ms;
+  }
+  .stars:nth-child(12) {
+    top: 36%;
+    left: 21%;
+    animation-delay: 1336ms;
+  }
+  .stars:nth-child(13) {
+    top: 71%;
+    left: 9%;
+    animation-delay: 1697ms;
+  }
+  .stars:nth-child(14) {
+    top: 10%;
+    left: 71%;
+    animation-delay: 1704ms;
+  }
+  .stars:nth-child(15) {
+    top: 89%;
+    left: 86%;
+    animation-delay: 1557ms;
+  }
+  .stars:nth-child(16) {
+    top: 63%;
+    left: 16%;
+    animation-delay: 548ms;
+  }
+  .stars:nth-child(17) {
+    top: 29%;
+    left: 9%;
+    animation-delay: 1508ms;
+  }
+  .stars:nth-child(18) {
+    top: 48%;
+    left: 82%;
+    animation-delay: 1580ms;
+  }
+  .stars:nth-child(19) {
+    top: 6%;
+    left: 9%;
+    animation-delay: 467ms;
+  }
+  .stars:nth-child(20) {
+    top: 38%;
+    left: 52%;
+    animation-delay: 1570ms;
+  }
+  .stars:nth-child(21) {
+    top: 38%;
+    left: 44%;
+    animation-delay: 546ms;
+  }
+  .stars:nth-child(22) {
+    top: 57%;
+    left: 54%;
+    animation-delay: 1065ms;
+  }
+  .stars:nth-child(23) {
+    top: 64%;
+    left: 10%;
+    animation-delay: 1897ms;
+  }
+  .stars:nth-child(24) {
+    top: 39%;
+    left: 24%;
+    animation-delay: 1390ms;
+  }
+  .stars:nth-child(25) {
+    top: 10%;
+    left: 86%;
+    animation-delay: 641ms;
+  }
+  .stars:nth-child(26) {
+    top: 51%;
+    left: 26%;
+    animation-delay: 924ms;
+  }
+  .stars:nth-child(27) {
+    top: 39%;
+    left: 38%;
+    animation-delay: 1751ms;
+  }
+  .stars:nth-child(28) {
+    top: 95%;
+    left: 24%;
+    animation-delay: 73ms;
+  }
+  .stars:nth-child(29) {
+    top: 56%;
+    left: 60%;
+    animation-delay: 1306ms;
+  }
+  .stars:nth-child(30) {
+    top: 66%;
+    left: 20%;
+    animation-delay: 960ms;
+  }
+  .stars:nth-child(31) {
+    top: 94%;
+    left: 17%;
+    animation-delay: 1568ms;
+  }
+  .stars:nth-child(32) {
+    top: 89%;
+    left: 51%;
+    animation-delay: 1311ms;
+  }
+  .stars:nth-child(33) {
+    top: 29%;
+    left: 99%;
+    animation-delay: 226ms;
+  }
+  .stars:nth-child(34) {
+    top: 39%;
+    left: 63%;
+    animation-delay: 268ms;
+  }
+  .stars:nth-child(35) {
+    top: 87%;
+    left: 50%;
+    animation-delay: 1445ms;
+  }
+  .stars:nth-child(36) {
+    top: 7%;
+    left: 100%;
+    animation-delay: 491ms;
+  }
+  .stars:nth-child(37) {
+    top: 83%;
+    left: 71%;
+    animation-delay: 1418ms;
+  }
+  .stars:nth-child(38) {
+    top: 42%;
+    left: 21%;
+    animation-delay: 256ms;
+  }
+  .stars:nth-child(39) {
+    top: 33%;
+    left: 8%;
+    animation-delay: 399ms;
+  }
+  .stars:nth-child(40) {
+    top: 99%;
+    left: 83%;
+    animation-delay: 279ms;
+  }
+  .stars:nth-child(41) {
+    top: 9%;
+    left: 65%;
+    animation-delay: 310ms;
+  }
+  .stars:nth-child(42) {
+    top: 16%;
+    left: 23%;
+    animation-delay: 546ms;
+  }
+  .stars:nth-child(43) {
+    top: 29%;
+    left: 40%;
+    animation-delay: 532ms;
+  }
+  .stars:nth-child(44) {
+    top: 11%;
+    left: 21%;
+    animation-delay: 66ms;
+  }
+  .stars:nth-child(45) {
+    top: 95%;
+    left: 4%;
+    animation-delay: 884ms;
+  }
+  .stars:nth-child(46) {
+    top: 82%;
+    left: 41%;
+    animation-delay: 1995ms;
+  }
+  .stars:nth-child(47) {
+    top: 74%;
+    left: 5%;
+    animation-delay: 1775ms;
+  }
+  .stars:nth-child(48) {
+    top: 79%;
+    left: 86%;
+    animation-delay: 243ms;
+  }
+  .stars:nth-child(49) {
+    top: 71%;
+    left: 16%;
+    animation-delay: 1052ms;
+  }
+  .stars:nth-child(50) {
+    top: 25%;
+    left: 9%;
+    animation-delay: 1439ms;
+  }
+  .stars:nth-child(51) {
+    top: 71%;
+    left: 71%;
+    animation-delay: 850ms;
+  }
+  .stars:nth-child(52) {
+    top: 85%;
+    left: 3%;
+    animation-delay: 999ms;
+  }
+  .stars:nth-child(53) {
+    top: 7%;
+    left: 78%;
+    animation-delay: 477ms;
+  }
+  .stars:nth-child(54) {
+    top: 31%;
+    left: 53%;
+    animation-delay: 1127ms;
+  }
+  .stars:nth-child(55) {
+    top: 5%;
+    left: 80%;
+    animation-delay: 399ms;
+  }
+  .stars:nth-child(56) {
+    top: 32%;
+    left: 15%;
+    animation-delay: 1415ms;
+  }
+  .stars:nth-child(57) {
+    top: 50%;
+    left: 94%;
+    animation-delay: 976ms;
+  }
+  .stars:nth-child(58) {
+    top: 24%;
+    left: 71%;
+    animation-delay: 1156ms;
+  }
+  .stars:nth-child(59) {
+    top: 87%;
+    left: 54%;
+    animation-delay: 646ms;
+  }
+  .stars:nth-child(60) {
+    top: 62%;
+    left: 79%;
+    animation-delay: 842ms;
+  }
+  .stars:nth-child(61) {
+    top: 38%;
+    left: 84%;
+    animation-delay: 838ms;
+  }
+  .stars:nth-child(62) {
+    top: 84%;
+    left: 14%;
+    animation-delay: 1247ms;
+  }
+  .stars:nth-child(63) {
+    top: 74%;
+    left: 52%;
+    animation-delay: 1195ms;
+  }
+  .stars:nth-child(64) {
+    top: 70%;
+    left: 90%;
+    animation-delay: 1795ms;
+  }
+  .stars:nth-child(65) {
+    top: 2%;
+    left: 76%;
+    animation-delay: 561ms;
+  }
+  .stars:nth-child(66) {
+    top: 57%;
+    left: 94%;
+    animation-delay: 683ms;
+  }
+  .stars:nth-child(67) {
+    top: 76%;
+    left: 12%;
+    animation-delay: 921ms;
+  }
+  .stars:nth-child(68) {
+    top: 66%;
+    left: 88%;
+    animation-delay: 105ms;
+  }
+  .stars:nth-child(69) {
+    top: 22%;
+    left: 66%;
+    animation-delay: 73ms;
+  }
+  .stars:nth-child(70) {
+    top: 85%;
+    left: 82%;
+    animation-delay: 388ms;
+  }
+  .stars:nth-child(71) {
+    top: 54%;
+    left: 30%;
+    animation-delay: 378ms;
+  }
+  .stars:nth-child(72) {
+    top: 88%;
+    left: 63%;
+    animation-delay: 64ms;
+  }
+  .stars:nth-child(73) {
+    top: 35%;
+    left: 85%;
+    animation-delay: 340ms;
+  }
+  .stars:nth-child(74) {
+    top: 43%;
+    left: 46%;
+    animation-delay: 743ms;
+  }
+  .stars:nth-child(75) {
+    top: 21%;
+    left: 85%;
+    animation-delay: 497ms;
+  }
+  .stars:nth-child(76) {
+    top: 57%;
+    left: 59%;
+    animation-delay: 39ms;
+  }
+  .stars:nth-child(77) {
+    top: 76%;
+    left: 29%;
+    animation-delay: 1430ms;
+  }
+  .stars:nth-child(78) {
+    top: 74%;
+    left: 52%;
+    animation-delay: 931ms;
+  }
+  .stars:nth-child(79) {
+    top: 20%;
+    left: 89%;
+    animation-delay: 1565ms;
+  }
+  .stars:nth-child(80) {
+    top: 16%;
+    left: 83%;
+    animation-delay: 1710ms;
+  }
+  .stars:nth-child(81) {
+    top: 45%;
+    left: 40%;
+    animation-delay: 1320ms;
+  }
+  .stars:nth-child(82) {
+    top: 42%;
+    left: 21%;
+    animation-delay: 168ms;
+  }
+  .stars:nth-child(83) {
+    top: 53%;
+    left: 19%;
+    animation-delay: 977ms;
+  }
+  .stars:nth-child(84) {
+    top: 100%;
+    left: 50%;
+    animation-delay: 1320ms;
+  }
+  .stars:nth-child(85) {
+    top: 92%;
+    left: 13%;
+    animation-delay: 1329ms;
+  }
+  .stars:nth-child(86) {
+    top: 52%;
+    left: 55%;
+    animation-delay: 1640ms;
+  }
+  .stars:nth-child(87) {
+    top: 59%;
+    left: 49%;
+    animation-delay: 1084ms;
+  }
+  .stars:nth-child(88) {
+    top: 86%;
+    left: 47%;
+    animation-delay: 1466ms;
+  }
+  .stars:nth-child(89) {
+    top: 69%;
+    left: 77%;
+    animation-delay: 1027ms;
+  }
+  .stars:nth-child(90) {
+    top: 13%;
+    left: 20%;
+    animation-delay: 129ms;
+  }
+  .stars:nth-child(91) {
+    top: 26%;
+    left: 88%;
+    animation-delay: 566ms;
+  }
+  .stars:nth-child(92) {
+    top: 52%;
+    left: 32%;
+    animation-delay: 788ms;
+  }
+  .stars:nth-child(93) {
+    top: 83%;
+    left: 91%;
+    animation-delay: 1021ms;
+  }
+  .stars:nth-child(94) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 113ms;
+  }
+  .stars:nth-child(95) {
+    top: 65%;
+    left: 29%;
+    animation-delay: 947ms;
+  }
+  .stars:nth-child(96) {
+    top: 38%;
+    left: 9%;
+    animation-delay: 879ms;
+  }
+  .stars:nth-child(97) {
+    top: 52%;
+    left: 43%;
+    animation-delay: 1264ms;
+  }
+  .stars:nth-child(98) {
+    top: 3%;
+    left: 78%;
+    animation-delay: 1968ms;
+  }
+  .stars:nth-child(99) {
+    top: 11%;
+    left: 38%;
+    animation-delay: 970ms;
+  }
+  .stars:nth-child(100) {
+    top: 47%;
+    left: 6%;
+    animation-delay: 1516ms;
+  }
+  
