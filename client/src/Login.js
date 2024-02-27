@@ -75,8 +75,8 @@ const Login = () => {
       setMode(mode === 'login' ? 'signup' : 'login');
     };
   
-    const stars = showStars && [...Array(300)].map((_, i) => {
-      const size = Math.random() * .6;
+    const stars = showStars && [...Array(100)].map((_, i) => {
+      const size = Math.random() * .5;
       const opacity = Math.random();
       return (
         <svg
