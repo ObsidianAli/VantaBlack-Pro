@@ -68,16 +68,35 @@ button:hover {
 }
 
 .stars {
-    background: #fff;
+    border: none;
     position: absolute;
     animation: stars 4s infinite linear;
-  }
+}
   
 @keyframes stars {
     from { transform: scale(0); }
     to { transform: scale(1); opacity: 0; }
 }
   
+.title {
+    font-size: 5em;
+    font-weight: bold;
+    background: linear-gradient(270deg, #800080, #993366, #cc3366, #cc6699, #cc9999, #cc6699, #993366, #800080, #660066, #4B0082, #800000);
+    background-size: 1200% 1200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 20s ease-in-out infinite;
+    text-align: center;
+}
+  
+@keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+
   /* Generate 100 stars (was translated from SCSS so that's why it looks like this.)*/
   .stars:nth-child(1) {
     top: 37%;
