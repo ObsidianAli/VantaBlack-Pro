@@ -91,7 +91,7 @@ const Login = () => {
     const [showServerForm, setShowServerForm] = useState(false);
 
     const handleAddServer = () => {
-      setShowServerForm(true);
+      setShowServerForm(prevShowServerForm => !prevShowServerForm);
     };
 
     const handleRegister = () => {

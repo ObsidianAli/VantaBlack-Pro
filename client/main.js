@@ -1,4 +1,27 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
+const { Sequelize } = require('sequelize');
+
+let sequelize;
+
+function connectToDatabase(serverDetails) {
+  sequelize = new Sequelize(serverDetails.database, serverDetails.username, serverDetails.password, {
+    host: serverDetails.ip,
+    dialect: serverDetails.dialect,
+    port: serverDetails.port,
+  });
+
+  sequelize.authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+      console.error('Unable to connect to the database:', err);
+    });
+}
+
+ipcMain.on('server-details', (event, serverDetails) => {
+  connectToDatabase(serverDetails);
+});
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -6,6 +29,7 @@ function createWindow () {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false, // Add this line if you're using Electron 12 or later
     }
   })
 
