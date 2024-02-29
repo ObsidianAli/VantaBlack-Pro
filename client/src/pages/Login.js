@@ -1,73 +1,17 @@
+// External imports
 import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
-import './Login.css';
-import LogoAnimation from '../components/LogoAnimation/LogoAnimation';
-import { useTransition } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faServer, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+// Components
+import LogoAnimation from '../components/LogoAnimation/LogoAnimation';
 import ServerForm from '../components/ServerForm/ServerForm.js';
+import LoginForm from '../components/Authentication/LoginForm.js';
+import AnimatedLoginForm from '../components/Authentication/AnimatedLoginForm.js';
 
-const LoginForm = ({ mode, onRegister }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log(username, password, firstName, lastName, email);
-    if (mode === 'signup') {
-      onRegister();
-    }
-  };
-
-  return (
-    <form onSubmit={handleLogin}>
-      {mode === 'signup' && (
-        <>
-          <input type="text" placeholder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)} />
-          <input type="text" placeholder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)} />
-          <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-        </>
-      )}
-      <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
-      <button type="submit">{mode === 'signup' ? 'Sign Up' : 'Log In'}</button>
-    </form>
-  );
-};
-
-const AnimatedLoginForm = ({ mode, handleSignUpClick, onRegister }) => {
-  const fade = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: { tension: 100, friction: 30},
-  });
-
-  const props = useSpring({
-    height: mode === 'signup' ? '300px' : '200px',
-    config: { tension: 100, friction: 30},
-  });
-
-  return (
-    <animated.div style={fade}>
-      <div className="card">
-        <LoginForm mode={mode} onRegister={onRegister} />
-        <div className="links">
-          {mode === 'signup' ? (
-            <a href='/login' onClick={handleSignUpClick}>Already registered? Log in.</a>
-          ) : (
-            <>
-              <a href="/signup" onClick={handleSignUpClick}>Register</a>
-              <a href="/forgot-password">Forgot Password?</a>
-            </>
-          )}
-        </div>
-      </div>
-    </animated.div>
-  );
-};
+// Assets
+import './Login.css';
 
 const AnimatedTitle = () => {
   const fade = useSpring({
