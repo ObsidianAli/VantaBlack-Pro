@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const { ipcRenderer } = window.require('electron');
 // ^^^ ipcRenderer is a tool provided by the Electron framework that allows my application to send and recieve messages between the main process and the
 // renderer process. The 'Main' process runs in the background and controls the live cycle of the application. It handles things such as creating windows,
@@ -16,6 +18,7 @@ const { ipcRenderer } = window.require('electron');
 
 // ServerForm is a functional component, a function that describes part of the application's user interface. 
 const ServerForm = () => {
+  const navigate = useNavigate();
   const [serverDetails, setServerDetails] = useState({});
 
   const handleServerDetailsSubmit = (event) => {
@@ -23,6 +26,18 @@ const ServerForm = () => {
     // Send the server details to the main process
     ipcRenderer.send('server-details', serverDetails);
   };
+
+  // Listen for the database-connected event
+  useEffect(() => {
+    ipcRenderer.on('database-connected', () => {
+      navigate('/dashboard');
+    });
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      ipcRenderer.removeAllListeners('database-connected');
+    };
+  }, []);
 
   // when on of the form changes, update the server details directly. (So if I already wrote username and password, keep them and add email if I changed it)
   const handleInputChange = (event) => {

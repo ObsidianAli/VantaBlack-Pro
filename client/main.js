@@ -79,6 +79,7 @@ ipcMain.on('register-user', (event, userData) => {
 
 ipcMain.on('server-details', (event, serverDetails) => {
   connectToDatabase(serverDetails);
+  event.reply('database-connected', true);
 });
 
 // Create application window
