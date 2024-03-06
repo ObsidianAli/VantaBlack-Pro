@@ -26,33 +26,49 @@ const AnimatedTitle = () => {
 };
 
 const Login = () => {
+    // Show logo initally but don't show stars. 
     const [showLogo, setShowLogo] = useState(true);
     const [showStars, setShowStars] = useState(false);
+
+    // useState('login'): This tells React "Hey, I need a place to store some data. Let's start with the value 'login'."
+    // const [mode, setMode] = ...: This is like saying: "React, give me two things - the current value of the data 
+    // ('login' to start with), and a way to change that data."
     const [mode, setMode] = useState('login');
 
+
+    // Creates a "memory" (state) to track if the user is registered or not, initally not. setIsRegistered is like a remote control that can change this memory.
     const [isRegistered, setIsRegistered] = useState(false);
 
+    // Same thing but whether to show the server form or not. 
     const [showServerForm, setShowServerForm] = useState(false);
 
+    // When this function is called flip the serverform. So if it was false, turn to true and vice versa.
     const handleAddServer = () => {
       setShowServerForm(prevShowServerForm => !prevShowServerForm);
     };
 
+    // Function that marks the user as registered
     const handleRegister = () => {
       setIsRegistered(true);
-    }; 
-  
+    };
+
     const handleLogoAnimationFinished = () => {
       setShowLogo(false);
       setShowStars(true);
     };
   
+    // When this function is called it does two things, firstly prevent the default action of the click event, so prevent it from refreshing or navigating 
+    // to a new page when the button is clicked.
+    // Secondly, it checks the current mode of the form. If the mode is 'login', it changes to 'signup'. If the mode is 'signup', it changes to login.
     const handleSignUpClick = (e) => {
       e.preventDefault();
 
       setMode(mode === 'login' ? 'signup' : 'login');
     };
 
+    // controls how the form appears using the 'useSpring' function from the react-spring library to create an animation effect. The opacity and height
+    // change based on whether the user is registered or not. If the user is registered the form becomes invisible (opacity 0) and if the user is not
+    // then the form is visible with (opacity 1). Similarly, depending on the mode the height is either 300px if the mode is sign up and 200px if not.
     const formProps = useSpring({
       opacity: isRegistered ? 0 : 1,
       height: isRegistered ? '0px' : (mode === 'signup' ? '300px' : '200px'),
@@ -67,7 +83,8 @@ const Login = () => {
       flexDirection: 'column',
       alignItems: 'center',
     });
-  
+
+    // an array of SVG elements that represent stars.
     const stars = showStars && [...Array(100)].map((_, i) => {
       const size = Math.random() * .5;
       const opacity = Math.random();
@@ -83,6 +100,7 @@ const Login = () => {
       );
     });
   
+    // This return statement specifies what the component should render.
     return (
       <div className="login">
         {stars}

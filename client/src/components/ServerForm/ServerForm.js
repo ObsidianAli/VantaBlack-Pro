@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 const { ipcRenderer } = window.require('electron');
+// ^^^ ipcRenderer is a tool provided by the Electron framework that allows my application to send and recieve messages between the main process and the
+// renderer process. The 'Main' process runs in the background and controls the live cycle of the application. It handles things such as creating windows,
+// handling system events, and commmunicating with the operating system. Meanwhile the 'renderer' process is responsible for rendering web pages that make
+// up the user interface. Each window in the application is run by its own independent renderer process.
+//
+// the ipcRenderer allows these two types of processes to communicate with each other. For example, a renderer process might send a message to the main
+// process asking it to perform a task that requires access to the operating system, such as reading a file or opening a new window. The main process can
+// then perform this task and send a message back to the renderer process with the result.
+//
+// In the context of my application the renderer process is sending the server information filled out in the form to the renderer process which can then do
+// something with them such as sending them over the network.
 
+
+
+// ServerForm is a functional component, a function that describes part of the application's user interface. 
 const ServerForm = () => {
   const [serverDetails, setServerDetails] = useState({});
 
@@ -12,6 +26,7 @@ const ServerForm = () => {
     ipcRenderer.send('server-details', serverDetails);
   };
 
+  // when on of the form changes, update the server details directly. (So if I already wrote username and password, keep them and add email if I changed it)
   const handleInputChange = (event) => {
     setServerDetails({
       ...serverDetails,
