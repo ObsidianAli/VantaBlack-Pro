@@ -3,8 +3,10 @@ const { Sequelize } = require('sequelize');
 
 let sequelize;
 let User;
-// Variable for storing registration data until the connection to the database has been established.
+// Variables for storing registration and login data until the connection to the database has been established.
 let pendingRegistrationData = null;
+let pendingLoginData = null;
+
 
 function connectToDatabase(serverDetails) {
   sequelize = new Sequelize(serverDetails.database, serverDetails.username, serverDetails.password, {
@@ -38,16 +40,12 @@ function connectToDatabase(serverDetails) {
   });
 
   // Create a new table called VantaBlack-Users (if it doesn't already exist and THEN -> insert the userdata)
-  sequelize.sync()
-    .then(() => {
-      console.log('Database & tables created!');
-      return sequelize.authenticate();
-    })
+  sequelize.authenticate()
     .then(() => {
       console.log('Connection has been established successfully.');
-      // If there is pending registration data, save it to the database
+      // If there is pending registration data, create the table and save the data
       if (pendingRegistrationData) {
-        return User.create(pendingRegistrationData);
+        return sequelize.sync().then(() => User.create(pendingRegistrationData));
       }
     })
     .then(() => {
@@ -57,9 +55,10 @@ function connectToDatabase(serverDetails) {
       }
     })
     .catch(err => {
-      console.error('Unable to create database:', err);
+      console.error('Unable to connect to database:', err);
     });
 }
+
 
 ipcMain.on('register-user', (event, userData) => {
   // If the connection is not ready, store the registration data for later
@@ -77,9 +76,42 @@ ipcMain.on('register-user', (event, userData) => {
   }
 });
 
+ipcMain.on('login-user', (event, userData) => {
+  // If the connection is not ready, store the login data for later
+  if (!sequelize) {
+    pendingLoginData = userData;
+  } else {
+    // If the connection is ready, verify the login data against the database
+    verifyLogin(userData);
+  }
+});
+
 ipcMain.on('server-details', (event, serverDetails) => {
   connectToDatabase(serverDetails);
+  // If there is pending login data, verify it against the database
+  if (pendingLoginData) {
+    verifyLogin(pendingLoginData);
+    pendingLoginData = null;
+  }
 });
+
+function verifyLogin(userData) {
+  // Find a user in the database with the provided username
+  User.findOne({ where: { username: userData.username } })
+    .then(user => {
+      // If a user is found and the password matches, log the user in
+      if (user && user.password === userData.password) {
+        console.log('User logged in successfully.');
+        // Might want to send a response back to the renderer process here
+      } else {
+        console.error('Invalid username or password.');
+        // Might want to send an error back to the renderer process here
+      }
+    })
+    .catch(err => {
+      console.error('Unable to log in user:', err);
+    });
+}
 
 // Create application window
 function createWindow () {

@@ -34,6 +34,10 @@ const LoginForm = ({ mode, onRegister }) => {
       // Send the registration data to the main process
       ipcRenderer.send('register-user', values);
       onRegister();
+    } else {
+      // Send the login data to the main process
+      ipcRenderer.send('login-user', values);
+      onRegister();
     }
   };
 
