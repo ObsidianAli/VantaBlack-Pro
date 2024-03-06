@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 
+// apparently doing import like this is not a good idea, I should do it like in serverform.js
+// import { ipcRenderer } from 'electron';
+// but I'm keeping the bad idea just incase this way doesn't work.
+const { ipcRenderer } = window.require('electron');
+
 const useForm = (initialState) => {
   const [values, setValues] = useState(initialState);
 
@@ -26,6 +31,8 @@ const LoginForm = ({ mode, onRegister }) => {
     e.preventDefault();
     console.log(values);
     if (mode === 'signup') {
+      // Send the registration data to the main process
+      ipcRenderer.send('register-user', values);
       onRegister();
     }
   };

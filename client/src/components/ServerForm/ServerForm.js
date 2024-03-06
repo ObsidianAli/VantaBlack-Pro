@@ -20,8 +20,6 @@ const ServerForm = () => {
 
   const handleServerDetailsSubmit = (event) => {
     event.preventDefault();
-    // Store the server details in local storage
-    localStorage.setItem('serverDetails', JSON.stringify(serverDetails));
     // Send the server details to the main process
     ipcRenderer.send('server-details', serverDetails);
   };
